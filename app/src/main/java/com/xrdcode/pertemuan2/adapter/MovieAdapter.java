@@ -19,28 +19,28 @@ import java.util.List;
  * Created by reysd on 06/08/2017.
  */
 
-public class Adapter extends RecyclerView.Adapter<Adapter.AdapterHolder> {
+public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.AdapterHolder> {
 
     private Context mContext;
     private List<Movies.Result> movieList;
 
-    public Adapter(Context mContext, List<Movies.Result> movieList) {
+    public MovieAdapter(Context mContext, List<Movies.Result> movieList) {
         this.mContext = mContext;
         this.movieList = movieList;
     }
 
     @Override
-    public Adapter.AdapterHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public MovieAdapter.AdapterHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View rowView = LayoutInflater.from(mContext).inflate(R.layout.list_movies_item, parent, false);
         AdapterHolder adapterHolder = new AdapterHolder(rowView);
         return adapterHolder;
     }
 
     @Override
-    public void onBindViewHolder(Adapter.AdapterHolder holder, int position) {
+    public void onBindViewHolder(MovieAdapter.AdapterHolder holder, int position) {
         holder.movieTitle.setText(movieList.get(position).title);
         holder.movieOverview.setText(movieList.get(position).overview);
-        Picasso.with(mContext).load(MovieHelper.MOVIE_POSTER_URL + movieList.get(position).poster_path);
+        Picasso.with(mContext).load(MovieHelper.MOVIE_POSTER_URL + movieList.get(position).poster_path).into(holder.movieImg);
     }
 
     @Override
